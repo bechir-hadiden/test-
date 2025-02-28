@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle qualité</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #1a237e;
+            margin-bottom: 30px;
+        }
+
+        .actions-bar {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #00c853;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            border: 1px solid #ddd;
+        }
+
+        .dossiers-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .dossiers-title {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .dossiers-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            color: #666;
+            font-weight: 500;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-top: 1px solid #eee;
+        }
+
+        .status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .status-success {
+            background: #e8f5e9;
+            color: #00c853;
+        }
+
+        .status-pending {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        .action-btn {
+            background: #00c853;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Controle qualité</h1>
+
+        <div class="actions-bar">
+            <button class="btn btn-primary">+ Commencer Controle</button>
+            <button class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                </svg>
+                Configurer
+            </button>
+            <button class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+                </svg>
+                Overview
+            </button>
+            <button class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                </svg>
+                Rapport
+            </button>
+        </div>
+
+        <div class="dossiers-header">
+            <h2 class="dossiers-title">Dossiers</h2>
+            <div class="dossiers-actions">
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/>
+                    </svg>
+                    Trier
+                </button>
+                <button class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+                    </svg>
+                    Filtrer
+                </button>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID TACHE</th>
+                    <th>COMMUNE</th>
+                    <th>DATE DE FIN</th>
+                    <th>KM CATÉGORIE</th>
+                    <th>État</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#0239675</td>
+                    <td>MAZAN</td>
+                    <td>26/11/2024</td>
+                    <td>High KM(>50)</td>
+                    <td><span class="status status-success">Contrôlé</span></td>
+                    <td><button class="action-btn">Controler</button></td>
+                </tr>
+                <tr>
+                    <td>#0239675</td>
+                    <td>LE BARP</td>
+                    <td>15/11/2024</td>
+                    <td>Medium KM(20-50)</td>
+                    <td><span class="status status-pending">Non contrôlé</span></td>
+                    <td><button class="action-btn">Controler</button></td>
+                </tr>
+                <tr>
+                    <td>#0239973</td>
+                    <td>AVENSAN</td>
+                    <td>Rent</td>
+                    <td>xxxxxx</td>
+                    <td><span class="status status-success">Contrôlé</span></td>
+                    <td><button class="action-btn">Controler</button></td>
+                </tr>
+                <tr>
+                    <td>#0239972</td>
+                    <td>IFFENDIC</td>
+                    <td>Rent</td>
+                    <td>xxxxxx</td>
+                    <td><span class="status status-success">Contrôlé</span></td>
+                    <td><button class="action-btn">Controler</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

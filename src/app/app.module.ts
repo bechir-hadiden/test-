@@ -10,14 +10,18 @@ import { SafeUrlPipe } from './safe-url.pipe';
 import { LoginComponent } from './login/login.component';
 import { TestComponent } from './test/test.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { ListttComponent } from './listtt/listtt.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
     FilesComponent,
     SafeUrlPipe,
     LoginComponent,
-    TestComponent
+    TestComponent,
+    ListttComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +29,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule , 
     ReactiveFormsModule,
     BrowserModule,
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule ,  // Assurez-vous que ce module est importé
+
 
   ],
   providers: [],
