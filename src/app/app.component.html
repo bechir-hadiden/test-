@@ -1,0 +1,13 @@
+<!-- <div class="pdf-viewer">
+  <object [data]="pdfData" type="application/pdf"></object>
+  <div class="controls">
+    <button (click)="goToPreviousPage()">Previous</button>
+    <span>{{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="goToNextPage()">Next</button>
+  </div>
+</div>
+
+<div class="pdf-viewer">
+  <div *ngIf="loadingError" class="error-message">Error loading PDF. Please try again later.</div>
+</div> -->
+<router-outlet></router-outlet>
