@@ -4,6 +4,7 @@ import { FilesComponent } from './files/files.component';
 import { LoginComponent } from './login/login.component';
 import { TestComponent } from './test/test.component';
 import { ListttComponent } from './listtt/listtt.component';
+import { UpdateComponent } from './update/update.component';
 
 const routes: Routes = [
 
@@ -11,6 +12,8 @@ const routes: Routes = [
   {path:'login' , component:LoginComponent},
   {path:'test' , component:TestComponent},
   {path:'lista' , component:ListttComponent},
+  {path:'update' , component:UpdateComponent},
+
 
 
 

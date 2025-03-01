@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -307,98 +307,5 @@
         }
     </script>
 </body>
-</html> -->
-
-<div class="container">
-    <h1>Controle qualité</h1>
-  
-    <div class="actions-bar">
-      <button mat-raised-button color="primary" class="btn-primary">
-        <mat-icon>add</mat-icon>
-        Commencer Controle
-      </button>
-      
-      <button mat-button>
-        <mat-icon>settings</mat-icon>
-        Configurer
-      </button>
-      
-      <button mat-button>
-        <mat-icon>dashboard</mat-icon>
-        Overview
-      </button>
-      
-      <button mat-button>
-        <mat-icon>assessment</mat-icon>
-        Rapport
-      </button>
-    </div>
-  
-    <div class="dossiers-header">
-      <h2 class="dossiers-title">Dossiers</h2>
-      <div class="dossiers-actions">
-        <button mat-button>
-          <mat-icon>sort</mat-icon>
-          Trier
-        </button>
-        <button mat-button>
-          <mat-icon>filter_list</mat-icon>
-          Filtrer
-        </button>
-      </div>
-    </div>
-  
-    <table mat-table [dataSource]="dossiers" class="mat-elevation-z8">
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID TACHE </th>
-        <td mat-cell *matCellDef="let dossier"> {{dossier.id}} </td>
-      </ng-container>
-  
-      <!-- Commune Column -->
-      <ng-container matColumnDef="commune">
-        <th mat-header-cell *matHeaderCellDef> COMMUNE </th>
-        <td mat-cell *matCellDef="let dossier"> {{dossier.commune}} </td>
-      </ng-container>
-  
-      <!-- Date Column -->
-      <ng-container matColumnDef="dateFin">
-        <th mat-header-cell *matHeaderCellDef> DATE DE FIN </th>
-        <td mat-cell *matCellDef="let dossier"> {{dossier.dateFin}} </td>
-      </ng-container>
-  
-      <!-- KM Column -->
-      <ng-container matColumnDef="kmCategorie">
-        <th mat-header-cell *matHeaderCellDef> KM CATÉGORIE </th>
-        <td mat-cell *matCellDef="let dossier"> {{dossier.kmCategorie}} </td>
-      </ng-container>
-  
-      <!-- Etat Column -->
-      <ng-container matColumnDef="etat">
-        <th mat-header-cell *matHeaderCellDef> État </th>
-        <td mat-cell *matCellDef="let dossier">
-          <span class="status" 
-                [class.status-success]="dossier.etat === 'Contrôlé'"
-                [class.status-pending]="dossier.etat === 'Non contrôlé'"
-                (click)="dossier.etat === 'Non contrôlé' && startControl(dossier)">
-            {{dossier.etat}}
-          </span>
-        </td>
-      </ng-container>
-  
-      <!-- Action Column -->
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
-        <td mat-cell *matCellDef="let dossier">
-          <button mat-raised-button color="primary"
-                  [disabled]="dossier.etat === 'Contrôlé'"
-                  (click)="startControl(dossier)">
-            Controler
-          </button>
-        </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="['id', 'commune', 'dateFin', 'kmCategorie', 'etat', 'action']"></tr>
-      <tr mat-row *matRowDef="let row; columns: ['id', 'commune', 'dateFin', 'kmCategorie', 'etat', 'action'];"></tr>
-    </table>
-  </div>
+</html>
+    

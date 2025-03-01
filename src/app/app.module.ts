@@ -11,9 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { TestComponent } from './test/test.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListttComponent } from './listtt/listtt.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { UpdateComponent } from './update/update.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
     SafeUrlPipe,
     LoginComponent,
     TestComponent,
-    ListttComponent
+    ListttComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
     HttpClientModule , 
     ReactiveFormsModule,
     BrowserModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule ,  // Assurez-vous que ce module est importé
+    
 
 
   ],
