@@ -48,6 +48,75 @@
             border: 1px solid #ddd;
         }
 
+        /* Nouveau style pour le conteneur de filtrage */
+        .filter-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .filter-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .filter-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .filter-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .filter-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .filter-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        .filter-switch input:checked + .filter-slider {
+            background-color: #00c853;
+        }
+
+        .filter-switch input:checked + .filter-slider:before {
+            transform: translateX(26px);
+        }
+
+        .filter-status {
+            font-size: 14px;
+            font-weight: 500;
+            min-width: 100px;
+        }
+
         .dossiers-header {
             display: flex;
             justify-content: space-between;
@@ -86,22 +155,6 @@
             border-top: 1px solid #eee;
         }
 
-        .status {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .status-success {
-            background: #e8f5e9;
-            color: #00c853;
-        }
-
-        .status-pending {
-            background: #ffebee;
-            color: #f44336;
-        }
-
         .action-btn {
             background: #00c853;
             color: white;
@@ -112,6 +165,10 @@
             display: flex;
             align-items: center;
             gap: 4px;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -141,6 +198,16 @@
             </button>
         </div>
 
+        <!-- Nouveau conteneur de filtrage -->
+        <div class="filter-container">
+            <span class="filter-label">Afficher :</span>
+            <label class="filter-switch">
+                <input type="checkbox" id="statusFilter">
+                <span class="filter-slider"></span>
+            </label>
+            <span class="filter-status" id="filterStatus">Non contrôlés</span>
+        </div>
+
         <div class="dossiers-header">
             <h2 class="dossiers-title">Dossiers</h2>
             <div class="dossiers-actions">
@@ -166,45 +233,70 @@
                     <th>COMMUNE</th>
                     <th>DATE DE FIN</th>
                     <th>KM CATÉGORIE</th>
-                    <th>État</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
+            <tbody id="dossierTableBody">
+                <tr data-status="controlled">
                     <td>#0239675</td>
                     <td>MAZAN</td>
                     <td>26/11/2024</td>
                     <td>High KM(>50)</td>
-                    <td><span class="status status-success">Contrôlé</span></td>
-                    <td><button class="action-btn">Controler</button></td>
+                    <td class="action-cell">
+                        <button class="action-btn">Controler</button>
+                    </td>
                 </tr>
-                <tr>
+                <tr data-status="uncontrolled">
                     <td>#0239675</td>
                     <td>LE BARP</td>
                     <td>15/11/2024</td>
                     <td>Medium KM(20-50)</td>
-                    <td><span class="status status-pending">Non contrôlé</span></td>
-                    <td><button class="action-btn">Controler</button></td>
+                    <td class="action-cell">
+                        <button class="action-btn">Controler</button>
+                    </td>
                 </tr>
-                <tr>
+                <tr data-status="controlled">
                     <td>#0239973</td>
                     <td>AVENSAN</td>
                     <td>Rent</td>
                     <td>xxxxxx</td>
-                    <td><span class="status status-success">Contrôlé</span></td>
-                    <td><button class="action-btn">Controler</button></td>
+                    <td class="action-cell">
+                        <button class="action-btn">Controler</button>
+                    </td>
                 </tr>
-                <tr>
+                <tr data-status="controlled">
                     <td>#0239972</td>
                     <td>IFFENDIC</td>
                     <td>Rent</td>
                     <td>xxxxxx</td>
-                    <td><span class="status status-success">Contrôlé</span></td>
-                    <td><button class="action-btn">Controler</button></td>
+                    <td class="action-cell">
+                        <button class="action-btn">Controler</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusFilter = document.getElementById('statusFilter');
+            const filterStatus = document.getElementById('filterStatus');
+            const tableRows = document.querySelectorAll('#dossierTableBody tr');
+
+            statusFilter.addEventListener('change', function() {
+                const showControlled = this.checked;
+                filterStatus.textContent = showControlled ? 'Contrôlés' : 'Non contrôlés';
+                
+                tableRows.forEach(row => {
+                    const status = row.getAttribute('data-status');
+                    if (showControlled) {
+                        row.classList.toggle('hidden', status !== 'controlled');
+                    } else {
+                        row.classList.toggle('hidden', status !== 'uncontrolled');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
