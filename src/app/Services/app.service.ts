@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface FileData {
   id: number; // Assurez-vous que cela correspond à votre structure de données
@@ -9,12 +9,53 @@ export interface FileData {
   data?: string; // Optionnel si vous stockez le contenu en base64 ou un chemin vers le fichier
 }
 
+// src/app/models/dossier.model.ts
+export interface Dossier {
+  id: string;
+  commune: string;
+  dateFin: string;
+  kmCategorie: string;
+  isControlled: boolean;
+}
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
+
+  private dossiers: Dossier[] = [
+    {
+      id: '#0239675',
+      commune: 'MAZAN',
+      dateFin: '26/11/2024',
+      kmCategorie: 'High KM(>50)',
+      isControlled: true
+    },
+    {
+      id: '#0239676',
+      commune: 'LE BARP',
+      dateFin: '15/11/2024',
+      kmCategorie: 'Medium KM(20-50)',
+      isControlled: false
+    },
+    {
+      id: '#0239973',
+      commune: 'AVENSAN',
+      dateFin: 'Rent',
+      kmCategorie: 'xxxxxx',
+      isControlled: true
+    },
+    {
+      id: '#0239972',
+      commune: 'IFFENDIC',
+      dateFin: 'Rent',
+      kmCategorie: 'xxxxxx',
+      isControlled: true
+    }
+  ];
 
   private apiUrl = 'http://localhost:8084/sof/api/files/upload'; // URL du backend
 
@@ -60,7 +101,20 @@ getPDF(): Observable<Blob> {
   return this.http.get(this.apiGet, { responseType: 'blob' });
 }
 
+private dossiersSubject = new BehaviorSubject<Dossier[]>(this.dossiers);
 
 
+getDossiers(): Observable<Dossier[]> {
+  return this.dossiersSubject.asObservable();
+}
+
+toggleDossierStatus(id: string): void {
+  this.dossiers = this.dossiers.map(dossier => 
+    dossier.id === id 
+      ? { ...dossier, isControlled: !dossier.isControlled }
+      : dossier
+  );
+  this.dossiersSubject.next(this.dossiers);
+}
 
 }
