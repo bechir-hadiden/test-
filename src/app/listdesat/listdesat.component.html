@@ -1,0 +1,59 @@
+<!-- En-tête -->
+<div class="controle-header">
+    <h1>Controle qualité</h1>
+    <div class="actions">
+      <button class="btn-primary" (click)="commencerControle()">+ Commencer Controle</button>
+      <button class="btn-secondary" (click)="modifierCritere()">
+        <i class="fas fa-cog"></i> Modifier critère
+      </button>
+      <button class="btn-secondary">
+        <i class="fas fa-chart-bar"></i> Overview
+      </button>
+      <button class="btn-secondary" (click)="exporterPDF()">
+        <i class="fas fa-file-pdf"></i> PDF
+      </button>
+      <select  class="brame-select">
+        <option value="BRAME">BRAME</option>
+        <!-- Autres options -->
+      </select>
+    </div>
+  </div>
+  
+  <!-- Tableau des dossiers -->
+  <div class="dossiers-section">
+    <h2>Dossiers</h2>
+    <div class="table-container">
+      <table class="dossiers-table">
+        <thead>
+          <tr>
+            <th>Unité</th>
+            <th>COG</th>
+            <th>Collaborateur</th>
+            <th>Date de livraison</th>
+            <th>Date de controle</th>
+            <th>Phase</th>
+            <th>État</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dossier of dossiers">
+            <td>{{ dossier.unite }}</td>
+            <td>{{ dossier.cog }}</td>
+            <td>{{ dossier.collaborateur }}</td>
+            <td>{{ dossier.dateLivraison | date:'dd/MM/yyyy' }}</td>
+            <td>{{ dossier.dateControle | date:'dd/MM/yyyy' }}</td>
+            <td>{{ dossier.phase }}</td>
+            <td [ngClass]="{'controle': dossier.etat === 'Controlé', 'non-controle': dossier.etat === 'Non controlé'}">
+              {{ dossier.etat }}
+            </td>
+            <td>
+              <button class="btn-action">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

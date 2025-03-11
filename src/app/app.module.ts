@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ListttComponent } from './listtt/listtt.component';
 import { UpdateComponent } from './update/update.component';
 import { UpdateintervalleComponent } from './updateintervalle/updateintervalle.component';
+import { ListdesatComponent } from './listdesat/listdesat.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UpdateintervalleComponent } from './updateintervalle/updateintervalle.c
     TestComponent,
     ListttComponent,
     UpdateComponent,
-    UpdateintervalleComponent
+    UpdateintervalleComponent,
+    ListdesatComponent
   ],
   imports: [
     BrowserModule,

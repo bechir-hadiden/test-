@@ -1,4 +1,4 @@
-export interface Dossier {
+export interface Dossiezr {
     id: string;
     commune: string;
     dateFin: string;

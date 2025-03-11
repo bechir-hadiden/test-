@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Dossier } from '../model/dossier';
+import { Dossier } from '../Services/app.service';
 
 @Component({
   selector: 'app-test',
