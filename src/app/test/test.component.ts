@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Dossier } from '../Services/app.service';
+import { Dossier } from '../model/Dossier';
 
 @Component({
   selector: 'app-test',
@@ -16,8 +16,8 @@ export class TestComponent  implements OnInit {
       commune: 'MAZAN',
       dateFin: '26/11/2024',
       kmCategorie: 'High KM(>50)',
-      etat: 'Contrôlé'
-    },
+      etat: 'Contrôlé' // Nom de propriété avec accent circonflexe
+    }, 
     {
       id: '#0239675',
       commune: 'LE BARP',

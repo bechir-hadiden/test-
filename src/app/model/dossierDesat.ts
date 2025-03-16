@@ -4,5 +4,5 @@ export interface dossierDesat {
   dateLivraison: Date;
   dateControle: Date;
   phase: string;
-  etate: 'Contrôlé' | 'Non contrôlé';
+  etat: 'Contrôlé' | 'Non contrôlé';
 }

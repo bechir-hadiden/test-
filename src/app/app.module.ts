@@ -14,6 +14,7 @@ import { ListttComponent } from './listtt/listtt.component';
 import { UpdateComponent } from './update/update.component';
 import { UpdateintervalleComponent } from './updateintervalle/updateintervalle.component';
 import { ListdesatComponent } from './listdesat/listdesat.component';
+import { CriterComponent } from './criter/criter.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ListdesatComponent } from './listdesat/listdesat.component';
     ListttComponent,
     UpdateComponent,
     UpdateintervalleComponent,
-    ListdesatComponent
+    ListdesatComponent,
+    CriterComponent
   ],
   imports: [
     BrowserModule,

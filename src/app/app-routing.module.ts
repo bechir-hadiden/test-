@@ -6,6 +6,7 @@ import { TestComponent } from './test/test.component';
 import { ListttComponent } from './listtt/listtt.component';
 import { UpdateComponent } from './update/update.component';
 import { UpdateintervalleComponent } from './updateintervalle/updateintervalle.component';
+import { CriterComponent } from './criter/criter.component';
 
 const routes: Routes = [
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path:'lista' , component:ListttComponent},
   {path:'update' , component:UpdateComponent},
   {path:'intervalle' , component:UpdateintervalleComponent},
+  {path:'critere' , component:CriterComponent},
 
 
 

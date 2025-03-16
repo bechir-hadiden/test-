@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Dossiezr } from '../model/dossier';
+import { dossierDesat } from '../model/dossierDesat';
 @Component({
   selector: 'app-listdesat',
   templateUrl: './listdesat.component.html',
@@ -10,43 +10,43 @@ import { Dossiezr } from '../model/dossier';
 export class ListdesatComponent  implements OnInit {
 
 
-  dossiers: DossierDesat[] = [
+  dossiers: dossierDesat[] = [
     {
-      unite: 'RIPKFIEX DTAG',
+      // unite: 'RIPKFIEX DTAG',
       cog: 'BRAMOT-ESMI310-01',
       collaborateur: 'Ranim Yousfi',
       dateLivraison: new Date('2025-01-07'),
       dateControle: new Date('2025-01-15'),
       phase: 'Pré-étude',
-      etat: 'Controlé'
+      etat: 'Contrôlé'
     },
     // Ajout des autres dossiers de l'image
     {
-      unite: 'RIPKFIEX DTAG',
+      // unite: 'RIPKFIEX DTAG',
       cog: 'BRAMOT-ESMI310-01',
       collaborateur: 'Ranim Yousfi',
       dateLivraison: new Date('2025-01-07'),
       dateControle: new Date('2025-01-15'),
       phase: 'Creation IBM',
-      etat: 'Non controlé'
+      etat: 'Non contrôlé'
     },
     {
-      unite: 'RIPKFIEX DTAG',
+      // unite: 'RIPKFIEX DTAG',
       cog: 'AVENSAN',
       collaborateur: 'Ranim Yousfi',
       dateLivraison: new Date('2025-01-07'),
       dateControle: new Date('2025-01-21'),
       phase: 'Etude',
-      etat: 'Non controlé'
+      etat: 'Non contrôlé'
     },
     {
-      unite: 'RIPKFIEX DTAG',
+      // unite: 'RIPKFIEX DTAG',
       cog: 'IFFENDIC',
       collaborateur: 'Ranim Yousfi',
       dateLivraison: new Date('2025-01-07'),
       dateControle: new Date('2025-01-15'),
       phase: 'Raccoredement',
-      etat: 'Controlé'
+      etat: 'Contrôlé'
     }
   ];
   selectedBrame: string = 'BRAME';

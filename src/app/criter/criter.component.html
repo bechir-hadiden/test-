@@ -1,0 +1,34 @@
+<div class="critere-container">
+    <h2>Ajouter critère</h2>
+  
+    <form [formGroup]="critereForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="label">Label</label>
+        <input 
+          id="label"
+          type="text"
+          formControlName="label"
+          class="form-control">
+      </div>
+  
+      <div class="form-group">
+        <label for="prestation">Préstation</label>
+        <select 
+          id="prestation"
+          formControlName="prestation"
+          class="form-control">
+          <option value="">Sélectionnez une préstation</option>
+          <option *ngFor="let prestation of prestations" [value]="prestation">
+            {{prestation}}
+          </option>
+        </select>
+      </div>
+  
+      <div class="buttons-container">
+        <button type="button" class="btn-annuler" (click)="onAnnuler()">Annuler</button>
+        <button type="submit" class="btn-enregistrer" [disabled]="!critereForm.valid">
+          Enregistrer
+        </button>
+      </div>
+    </form>
+  </div>    

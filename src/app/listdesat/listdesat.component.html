@@ -38,13 +38,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let dossier of dossiers">
-            <td>{{ dossier.unite }}</td>
+            <!-- <td>{{ dossier.unite }}</td> -->
             <td>{{ dossier.cog }}</td>
             <td>{{ dossier.collaborateur }}</td>
             <td>{{ dossier.dateLivraison | date:'dd/MM/yyyy' }}</td>
             <td>{{ dossier.dateControle | date:'dd/MM/yyyy' }}</td>
             <td>{{ dossier.phase }}</td>
-            <td [ngClass]="{'controle': dossier.etat === 'Controlé', 'non-controle': dossier.etat === 'Non controlé'}">
+            <td [ngClass]="{'controle': dossier.etat === 'Contrôlé', 'non-controle': dossier.etat === 'Non contrôlé'}">
               {{ dossier.etat }}
             </td>
             <td>
