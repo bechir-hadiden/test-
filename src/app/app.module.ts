@@ -9,12 +9,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { SafeUrlPipe } from './safe-url.pipe';
 import { LoginComponent } from './login/login.component';
 import { TestComponent } from './test/test.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListttComponent } from './listtt/listtt.component';
 import { UpdateComponent } from './update/update.component';
 import { UpdateintervalleComponent } from './updateintervalle/updateintervalle.component';
 import { ListdesatComponent } from './listdesat/listdesat.component';
 import { CriterComponent } from './criter/criter.component';
+import { MessagesModule } from 'primeng/messages';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { UpComponent } from './up/up.component';
+import { CalendrierComponent } from './calendrier/calendrier.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,11 @@ import { CriterComponent } from './criter/criter.component';
     UpdateComponent,
     UpdateintervalleComponent,
     ListdesatComponent,
-    CriterComponent
+    CriterComponent,
+    UpComponent,
+    CalendrierComponent
+
+    
   ],
   imports: [
     BrowserModule,
@@ -35,11 +46,15 @@ import { CriterComponent } from './criter/criter.component';
     HttpClientModule , 
     ReactiveFormsModule,
     BrowserModule,
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(), // Import du module Datepicker
+FormsModule
     
 
 
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

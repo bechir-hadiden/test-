@@ -1,0 +1,39 @@
+.calendar-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .calendar-icon {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .calendar-icon:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .month-selector {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 150px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+  }
+  
+  .month-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .month-item:hover {
+    background-color: #f0f0f0;
+  }
+  

@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CriterComponent implements OnInit {
   critereForm: FormGroup;
   prestations: string[] = ['Prestation 1', 'Prestation 2', 'Prestation 3']; // À adapter selon vos besoins
+  closeMessage: string = '';
 
   constructor(private fb: FormBuilder) {
     this.critereForm = this.fb.group({
@@ -28,5 +29,9 @@ export class CriterComponent implements OnInit {
 
   onAnnuler(): void {
     this.critereForm.reset();
+  }
+
+  onClose() {
+    this.closeMessage = 'The alert has been closed';
   }
 }

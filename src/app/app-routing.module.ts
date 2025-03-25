@@ -7,6 +7,7 @@ import { ListttComponent } from './listtt/listtt.component';
 import { UpdateComponent } from './update/update.component';
 import { UpdateintervalleComponent } from './updateintervalle/updateintervalle.component';
 import { CriterComponent } from './criter/criter.component';
+import { UpComponent } from './up/up.component';
 
 const routes: Routes = [
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'intervalle' , component:UpdateintervalleComponent},
   {path:'critere' , component:CriterComponent},
 
+  {path:'up' , component:UpComponent},
 
 
 
