@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,10 @@ import { UpComponent } from './up/up.component';
 import { CalendrierComponent } from './calendrier/calendrier.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button'; // Import du module de PrimeNG
+
+import { DialogModule } from 'primeng/dialog'; // Import du module de PrimeNG
+
 
 @NgModule({
   declarations: [
@@ -36,24 +40,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ListdesatComponent,
     CriterComponent,
     UpComponent,
-    CalendrierComponent
+    CalendrierComponent,
 
-    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule , 
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserModule,
     BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(), // Import du module Datepicker
-FormsModule
-    
-
+    FormsModule,
 
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+
   providers: [MessageService],
   bootstrap: [AppComponent]
 })

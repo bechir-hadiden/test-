@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-up',
@@ -8,21 +9,9 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   styleUrl: './up.component.css'
 })
 export class UpComponent {
+  visible: boolean = false;
 
-  showMonths: boolean = false; // Gérer l'affichage du calendrier
-  selectedMonth: string = ''; // Mois sélectionné
-
-  months = [
-    'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-    'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
-  ];
-
-  toggleCalendar() {
-    this.showMonths = !this.showMonths;
-  }
-
-  selectMonth(month: string) {
-    this.selectedMonth = month;
-    this.showMonths = false; // Cacher le calendrier après sélection
+  showDialog() {
+    this.visible = true;
   }
 }
