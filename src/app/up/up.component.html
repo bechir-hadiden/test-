@@ -1,23 +1,26 @@
-<button (click)="showDialog()" class="p-button">Show</button>
+<!-- Chargement des dépendances -->
 
-<div *ngIf="visible" class="dialog-overlay">
-    <div class="dialog">
-        <h2>Edit Profile</h2>
-        <span class="p-text-secondary block mb-8">Update your information.</span>
-        
-        <div class="input-group">
-            <label for="username">Username</label>
-            <input id="username" type="text" autocomplete="off" />
-        </div>
+<div class="dropdown">
+  <!-- Bouton orange (au lieu de btn-secondary) -->
+  <button
+    class="btn btn-primary dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Dropdown Boosted
+  </button>
 
-        <div class="input-group">
-            <label for="email">Email</label>
-            <input id="email" type="email" autocomplete="off" />
-        </div>
-
-        <div class="button-group">
-            <button (click)="visible = false" class="secondary">Cancel</button>
-            <button (click)="visible = false">Save</button>
-        </div>
-    </div>
+  <!-- Menu déroulant -->
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
 </div>
+
+<!-- Scripts obligatoires -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/boosted@5.1.3/dist/js/boosted.bundle.min.js"></script>

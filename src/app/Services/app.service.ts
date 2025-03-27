@@ -57,7 +57,7 @@ export class AppService {
     }
   ];
 
-  private apiUrl = 'http://localhost:8084/sof/api/files/upload'; // URL du backend
+  private apiUrl2 = 'http://localhost:8084/sof/api/files/upload'; // URL du backend
 
   private apiGet = 'http://localhost:8084/sof/api/files/all'; // URL du backend*
 
@@ -115,6 +115,21 @@ toggleDossierStatus(id: string): void {
       : dossier
   );
   this.dossiersSubject.next(this.dossiers);
+}
+
+private apiUrl = 'http://localhost:8080/api/categories';
+
+
+getCategories(): Observable<any[]> {
+  return this.http.get<any[]>(this.apiUrl);
+}
+
+updateCategorie(categorie: any): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${categorie.id}`, categorie);
+}
+
+deleteCategorie(id: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/${id}`);
 }
 
 }
