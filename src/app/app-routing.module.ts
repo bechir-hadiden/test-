@@ -8,6 +8,7 @@ import { UpdateComponent } from './update/update.component';
 import { UpdateintervalleComponent } from './updateintervalle/updateintervalle.component';
 import { CriterComponent } from './criter/criter.component';
 import { UpComponent } from './up/up.component';
+import { ExportComponent } from './export/export.component';
 
 const routes: Routes = [
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'update' , component:UpdateComponent},
   {path:'intervalle' , component:UpdateintervalleComponent},
   {path:'critere' , component:CriterComponent},
+  {path:'export' , component:ExportComponent},
 
   {path:'up' , component:UpComponent},
 
