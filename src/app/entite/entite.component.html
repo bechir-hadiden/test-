@@ -1,0 +1,37 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">📋 Liste des Départements</h2>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+    <div class="table-responsive shadow-lg rounded">
+      <table class="table table-hover table-striped text-center align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Nom du Département</th>
+            <th>Nombre d'Employés</th>
+            <th>Date d'Affectation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let departement of departements">
+            <td>{{ departement.nomDepartement }}</td>
+            <td>{{ departement.nombreEmployee }}</td>
+            <td>{{ departement.dateAffectation | date:'dd/MM/yyyy' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <p *ngIf="departements.length === 0" class="text-muted text-center mt-3">
+      Aucun département trouvé.
+    </p>
+
+
+    <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-danger me-2" (click)="exportToPDF()">📄 Exporter en PDF</button>
+        <button class="btn btn-success" (click)="exportToExcel()">📊 Exporter en Excel</button>
+      </div>
+      
+  </div>
+  

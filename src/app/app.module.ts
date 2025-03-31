@@ -25,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button'; // Import du module de PrimeNG
 
 import { DialogModule } from 'primeng/dialog';
-import { ExportComponent } from './export/export.component'; // Import du module de PrimeNG
+import { ExportComponent } from './export/export.component';
+import { EntiteComponent } from './entite/entite.component'; // Import du module de PrimeNG
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ExportComponent } from './export/export.component'; // Import du module
     UpComponent,
     CalendrierComponent,
     ExportComponent,
+    EntiteComponent,
 
 
   ],

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Departement } from '../model/departement';
 
 export interface FileData {
   id: number; // Assurez-vous que cela correspond à votre structure de données
@@ -61,7 +62,9 @@ export class AppService {
 
   private apiGet = 'http://localhost:8084/sof/api/files/all'; // URL du backend*
 
-  private apiGetById = 'http://localhost:8084/sof/api/'; // URL du backend
+  private apiGetById = 'http://localhost:8095/departement/api'; // URL du backend
+
+  private apidepar = 'http://localhost:8095/departements/api'; // URL du backend
 
 
   constructor(private http: HttpClient) {}
@@ -73,8 +76,8 @@ export class AppService {
     return this.http.post<string>(this.apiUrl, formData);
   }
 
-  getAllFiles(): Observable<FileData[]> {
-    return this.http.get<FileData[]>(`${this.apiGet}/all`);
+  getAllFiles(): Observable<Departement[]> {
+    return this.http.get<Departement[]>(`${this.apidepar}/all`);
   }
   
   // Récupérer un fichier spécifique
