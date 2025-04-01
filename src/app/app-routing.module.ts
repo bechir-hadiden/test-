@@ -10,6 +10,7 @@ import { CriterComponent } from './criter/criter.component';
 import { UpComponent } from './up/up.component';
 import { ExportComponent } from './export/export.component';
 import { EntiteComponent } from './entite/entite.component';
+import { CalendrierComponent } from './calendrier/calendrier.component';
 
 const routes: Routes = [
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'intervalle' , component:UpdateintervalleComponent},
   {path:'critere' , component:CriterComponent},
   {path:'export' , component:ExportComponent},
+  {path:'calendrier' , component:CalendrierComponent},
 
   {path:'entite' , component:EntiteComponent},
 
