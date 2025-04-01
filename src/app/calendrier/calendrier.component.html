@@ -1,46 +1,51 @@
 <div class="card p-3 shadow">
-    <h5 class="card-title text-center">Filtres</h5>
-    <form [formGroup]="filterForm" (ngSubmit)="addFilter()">
-  
-      <!-- Sélection du champ -->
+  <h5 class="card-title text-center">Filtres</h5>
+
+  <!-- Sélection des critères -->
+  <form [formGroup]="filterForm" (ngSubmit)="addFilter()">
       <div class="mb-3">
-        <label class="form-label">Filtrer par :</label>
-        <select class="form-control" formControlName="field">
-          <option value="">Sélectionnez un critère</option>
-          <option *ngFor="let option of filterOptions" [value]="option.value">
-            {{ option.label }}
-          </option>
-        </select>
+          <label class="form-label">Choisissez un critère :</label>
+          <select class="form-control" formControlName="field">
+              <option value="" disabled>Sélectionnez un critère</option>
+              <option *ngFor="let option of filterOptions" [value]="option.value">
+                  {{ option.label }}
+              </option>
+          </select>
       </div>
-  
-      <!-- Liste déroulante pour la valeur du filtre -->
-      <div class="mb-3" *ngIf="currentOptions.length > 0">
-        <label class="form-label">Valeur :</label>
-        <select class="form-control" formControlName="value">
-          <option value="">Sélectionnez une valeur</option>
-          <option *ngFor="let option of currentOptions" [value]="option">
-            {{ option }}
-          </option>
-        </select>
-      </div>
-  
-      <!-- Bouton pour ajouter le critère -->
-      <button type="submit" class="btn btn-primary" [disabled]="!filterForm.valid">Ajouter le critère</button>
-    </form>
-  
-    <!-- Affichage des critères de filtrage sélectionnés -->
-    <div class="mt-3">
-      <h6>Critères de filtrage sélectionnés :</h6>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!filterForm.get('field')?.value">
+          Ajouter le critère
+      </button>
+  </form>
+
+  <!-- Affichage des critères sélectionnés -->
+  <div class="mt-3" *ngIf="selectedFilters.length > 0">
+      <h6>Critères sélectionnés :</h6>
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let filter of selectedFilters">
-          {{ filter.field }} : {{ filter.value }}
-        </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let filter of selectedFilters">
+              <div>
+                  <strong>{{ filter.fieldLabel }}</strong>
+              </div>
+              <button class="btn btn-sm btn-danger" (click)="removeFilter(filter)">X</button>
+          </li>
       </ul>
-    </div>
-  
-    <!-- Boutons pour appliquer et réinitialiser les filtres -->
-    <div class="d-flex justify-content-between mt-2">
-      <button class="btn btn-success" (click)="applyFilters()">Appliquer les filtres</button>
-      <button class="btn btn-danger" (click)="resetFilters()">Réinitialiser les filtres</button>
-    </div>
   </div>
+
+  <!-- Saisie des valeurs après sélection des critères -->
+  <form [formGroup]="valueForm" (ngSubmit)="applyFilters()" *ngIf="selectedFilters.length > 0">
+      <div *ngFor="let filter of selectedFilters" class="mb-3">
+          <label class="form-label">{{ filter.fieldLabel }} :</label>
+          <select class="form-control" formControlName="{{ filter.field }}" multiple>
+              <option *ngFor="let option of getFilterOptions(filter.field)" [value]="option">
+                  {{ option }}
+              </option>
+          </select>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!valueForm.valid">
+          Appliquer les filtres
+      </button>
+      <button class="btn btn-danger ms-2" (click)="resetFilters()">Réinitialiser</button>
+  </form>
+</div>

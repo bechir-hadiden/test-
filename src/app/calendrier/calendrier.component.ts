@@ -1,87 +1,100 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { FilterCriteria } from '../model/FilterCriteria';
-
-
-interface Filter {
-  field: string;
-  value: string | number | null;
-}
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 interface FilterOption {
   label: string;
   value: string;
-  type: string;
   options: (string | number)[];
-} 
+}
+
+interface Filter {
+  field: string;
+  fieldLabel: string;
+}
 
 @Component({
   selector: 'app-calendrier',
   templateUrl: './calendrier.component.html',
-  styleUrl: './calendrier.component.css'
+  styleUrls: ['./calendrier.component.css']
 })
-export class CalendrierComponent  { 
+export class CalendrierComponent implements OnInit {
   filterForm: FormGroup;
-  @Output() filterChanged = new EventEmitter<{ [key: string]: string | number | (string | number)[] | null }>();
+  valueForm: FormGroup;
+  @Output() filterChanged = new EventEmitter<{ [key: string]: (string | number)[] | null }>();
 
-  // Liste constante de critères de filtrage
-  filterOptions = [
-    { label: 'Prix', value: 'price', type: 'number', options: [100, 200, 300] },
-    { label: 'Quantité', value: 'quantity', type: 'number', options: [1, 2, 3, 4] },
-    { label: 'Date de Livraison', value: 'deliveryDate', type: 'date', options: ['2025-04-01', '2025-05-10', '2025-06-15'] }
+  filterOptions: FilterOption[] = [
+    { label: 'Prix', value: 'price', options: [100, 200, 300] },
+    { label: 'Quantité', value: 'quantity', options: [1, 2, 3, 4] },
+    { label: 'Date de Livraison', value: 'deliveryDate', options: ['2025-04-01', '2025-05-10', '2025-06-15'] }
   ];
 
-  // Liste des filtres choisis par l'utilisateur
   selectedFilters: Filter[] = [];
-  currentOptions: (string | number)[] = []; // Propriété pour stocker les options actuelles
 
   constructor(private fb: FormBuilder) {
     this.filterForm = this.fb.group({
-      field: [''],
-      value: [[]] // Initialisé en tant que tableau vide pour les sélections multiples
+      field: ['']
     });
+
+    this.valueForm = this.fb.group({});
   }
 
-  ngOnInit(): void {
-    // Écoute les changements du champ 'field' pour mettre à jour les options correspondantes
-    this.filterForm.get('field')?.valueChanges.subscribe(selectedField => {
-      const foundField = this.filterOptions.find(f => f.value === selectedField);
-      this.currentOptions = foundField ? foundField.options : [];
-      this.filterForm.get('value')?.setValue([]); // Réinitialise la valeur sélectionnée
-    });
-  }
+  ngOnInit(): void {}
 
-  // Méthode pour ajouter le filtre
+  /** Ajoute un critère de filtrage */
   addFilter(): void {
     const selectedField = this.filterForm.get('field')?.value;
-    const selectedValues = this.filterForm.get('value')?.value;
 
-    // Vérifie si un champ et au moins une valeur sont sélectionnés
-    if (selectedField && selectedValues.length > 0) {
-      this.selectedFilters.push({ field: selectedField, value: selectedValues });
-      this.filterForm.reset(); // Réinitialise le formulaire après l'ajout
-      this.currentOptions = []; // Réinitialise les options
-      this.applyFilters(); // Émet les filtres
+    if (selectedField && !this.selectedFilters.find(f => f.field === selectedField)) {
+      const fieldLabel = this.getFilterLabel(selectedField);
+      this.selectedFilters.push({ field: selectedField, fieldLabel });
+
+      // Ajouter un champ dynamique dans le formulaire des valeurs
+      this.valueForm.addControl(selectedField, this.fb.control([]));
+
+      this.filterForm.reset(); // Réinitialise le formulaire de critère
     }
   }
 
-  // Méthode pour appliquer les filtres
+  /** Supprime un critère */
+  removeFilter(filterToRemove: Filter): void {
+    this.selectedFilters = this.selectedFilters.filter(filter => filter !== filterToRemove);
+
+    // Supprime le champ du formulaire des valeurs
+    this.valueForm.removeControl(filterToRemove.field);
+  }
+
+  /** Récupère les options disponibles pour un champ donné */
+  getFilterOptions(field: string): (string | number)[] {
+    return this.filterOptions.find(option => option.value === field)?.options || [];
+  }
+
+  /** Applique les filtres sélectionnés */
   applyFilters(): void {
-    const filtersData = this.selectedFilters.reduce((acc, filter) => {
-      acc[filter.field] = filter.value;
+    const filtersData = Object.keys(this.valueForm.value).reduce((acc, key) => {
+      const values = this.valueForm.get(key)?.value;
+      if (values && values.length > 0) {
+        acc[key] = values;
+      }
       return acc;
-    }, {} as { [key: string]: string | number | (string | number)[] | null });
+    }, {} as { [key: string]: (string | number)[] | null });
 
-    this.filterChanged.emit(filtersData); // Émet les filtres
+    this.filterChanged.emit(filtersData);
   }
 
-  // Méthode pour réinitialiser les filtres
+  /** Réinitialise tous les filtres */
   resetFilters(): void {
-    this.selectedFilters = []; // Réinitialise les filtres choisis
-    this.filterChanged.emit({}); // Émet les filtres réinitialisés
+    this.selectedFilters = [];
+    this.valueForm.reset();
+
+    Object.keys(this.valueForm.controls).forEach(key => {
+      this.valueForm.removeControl(key);
+    });
+
+    this.filterChanged.emit({});
   }
 
-
-
+  /** Retourne le libellé d'un champ */
+  getFilterLabel(fieldValue: string): string {
+    return this.filterOptions.find(option => option.value === fieldValue)?.label || fieldValue;
+  }
 }
-
